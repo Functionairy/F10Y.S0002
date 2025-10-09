@@ -1,13 +1,16 @@
 using System;
+using System.Threading.Tasks;
 
 
 namespace F10Y.S0002
 {
     class Program
     {
-        static void Main()
+        static async Task Main()
         {
-            Console.WriteLine("Hello World!");
+            await Scripts.Instance
+                .Display_MachineInformation()
+                ;
         }
     }
 }
