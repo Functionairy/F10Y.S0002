@@ -26,27 +26,27 @@ namespace F10Y.S0002
         async Task Display_MachineInformation()
         {
             /// Run.
-            var machineName = Instances.MachineNameOperator.Get_MachineName();
+            var machine_Name = Instances.MachineNameOperator.Get_MachineName();
 
-            var processorCount = Instances.EnvironmentOperator.Get_ProcessorCount_Logical();
+            var processor_Count = Instances.EnvironmentOperator.Get_ProcessorCount_Logical();
 
             // 4096, this is useless.
-            var systemPageSize = Instances.EnvironmentOperator.Get_SystemPageSize_InBytes();
+            var systemPageSize_ByteCount = Instances.EnvironmentOperator.Get_SystemPageSize_InBytes();
 
             // True
-            var is64BitOS = Instances.EnvironmentOperator.Is_64BitOperatingSystem();
+            var is_64BitOS = Instances.EnvironmentOperator.Is_64BitOperatingSystem();
 
             // Microsoft Windows NT 10.0.19045.0
             var OSVersion = Instances.EnvironmentOperator.Get_OperatingSystem();
 
             // C:\WINDOWS\system32
-            var systemDirectoryPath = Instances.EnvironmentOperator.Get_SystemDirectoryPath();
+            var system_DirectoryPath = Instances.EnvironmentOperator.Get_SystemDirectoryPath();
 
             // David
-            var userName = Instances.EnvironmentOperator.Get_UserName();
+            var user_Name = Instances.EnvironmentOperator.Get_UserName();
 
             // VANESSA
-            var userDomainName = Instances.EnvironmentOperator.Get_UserDomainName();
+            var user_DomainName = Instances.EnvironmentOperator.Get_UserDomainName();
 
             var appData_DirectoryPath = Instances.EnvironmentOperator.Get_SpecialDirectoryPath(Environment.SpecialFolder.ApplicationData);
             // Useless:
@@ -58,17 +58,17 @@ namespace F10Y.S0002
             var clrVersion = Instances.EnvironmentOperator.Get_CLR_Version();
 
             // True
-            var is64BitProcess = Instances.EnvironmentOperator.Is_64BitProcess();
+            var is_64BitProcess = Instances.EnvironmentOperator.Is_64BitProcess();
 
             // 28631040, 28 MB
-            var workingSet = Instances.EnvironmentOperator.Get_WorkingSet();
+            var workingSet_ByteCount = Instances.EnvironmentOperator.Get_WorkingSet();
 
             // C:\Code\DEV\Git\GitHub\davidcoats\D8S.S0000.Private\source\D8S.S0000\bin\Debug\net8.0
-            var currentDirectoryPath = Instances.EnvironmentOperator.Get_CurrentDirectoryPath();
+            var current_DirectoryPath = Instances.EnvironmentOperator.Get_CurrentDirectoryPath();
 
-            var totalAvailableMemoryBytes = Instances.EnvironmentOperator.Get_TotalAvailableMemory_InBytes();
+            var availableMemory_ByteCount_Total = Instances.EnvironmentOperator.Get_TotalAvailableMemory_InBytes();
 
-            var totalAvailableMemoryBytes_GiB = Instances.BytesOperator.Get_Gibibytes_AsDouble(totalAvailableMemoryBytes);
+            var availableMemory_ByteCount_Total_GiB = Instances.BytesOperator.Get_Gibibytes_AsDouble(availableMemory_ByteCount_Total);
 
             var drives = Instances.EnvironmentOperator.Get_Drives();
 
@@ -109,26 +109,26 @@ namespace F10Y.S0002
                 .Append_BlankLine()
                 .Append("Machine:")
                 .Append(Instances.EnumerableOperator.Empty<string>()
-                    .Append($"{machineName}: machine name")
-                    .Append($"{processorCount}: processor count")
-                    .Append($"{totalAvailableMemoryBytes_GiB:0.0} {Instances.UnitSymbols.Gibibyte}: total available memory")
+                    .Append($"{machine_Name}: machine name")
+                    .Append($"{processor_Count}: processor count (actualy threads)")
+                    .Append($"{availableMemory_ByteCount_Total_GiB:0.0} {Instances.UnitSymbols.Gibibyte}: total available memory")
                     .Append(lines_ForDrives)
-                    .Append($"{systemPageSize}: system page size")
+                    .Append($"{systemPageSize_ByteCount}: system page size")
                     .Entab()
                 )
                 .Append_BlankLine()
                 .Append("Operating System:")
                 .Append(Instances.EnumerableOperator.Empty<string>()
-                    .Append($"{is64BitOS}: is 64-bit OS")
+                    .Append($"{is_64BitOS}: is 64-bit OS")
                     .Append($"{OSVersion}: OS version")
-                    .Append($"{systemDirectoryPath}: system directory")
+                    .Append($"{system_DirectoryPath}: system directory")
                     .Entab()
                 )
                 .Append_BlankLine()
                 .Append("User:")
                 .Append(Instances.EnumerableOperator.Empty<string>()
-                    .Append($"{userName}: user name")
-                    .Append($"{userDomainName}: user domain name")
+                    .Append($"{user_Name}: user name")
+                    .Append($"{user_DomainName}: user domain name")
                     .Append($"{user_DirectoryPath}: user directory path")
                     .Append($"{appData_DirectoryPath}: application data directory path")
                     //.Append($"{appData_Common_DirectoryPath}: application data (common) directory path")
@@ -140,9 +140,9 @@ namespace F10Y.S0002
                 .Append($"\t{clrVersion}: Common Language Runtime (CLR) version")
                 .Append_BlankLine()
                 .Append("Process:")
-                .Append($"\t{is64BitProcess}: is 64-bit process")
-                .Append($"\t{workingSet}: working set")
-                .Append($"\t{currentDirectoryPath}: current directory")
+                .Append($"\t{is_64BitProcess}: is 64-bit process")
+                .Append($"\t{workingSet_ByteCount}: working set")
+                .Append($"\t{current_DirectoryPath}: current directory")
                 .Append_BlankLine()
                 .Append(lines_ForSpecialDirectories)
                 ;
